@@ -1,8 +1,9 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      REFRESH_TOKEN_SECRET: string;
-      ACCESS_TOKEN_SECRET: string;
+      MONGO_ID: string!;
+      MONGO_PW: string!;
+      MONGO_COLLECTION: string!;
     }
   }
 }
