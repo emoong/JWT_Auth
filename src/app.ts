@@ -1,4 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
+import { connect } from './database';
 
 const app: Application = express();
 
@@ -13,4 +14,5 @@ app.use(express.json());
 // run server
 app.listen(port, (): void => {
   console.log(`server is running on port ${port}`);
+  connect();
 })
