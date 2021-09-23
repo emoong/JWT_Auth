@@ -1,29 +1,22 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface UserInput {
+export interface TokenInput {
   id: string;
-  password: string;
   accessToken: string;
 }
 
-export interface UserDocument extends Document {
+export interface TokenDocument extends Document {
   id: string;
-  password: string;
   refreshToken: string;
   createdAt: Date;
   updatedAt: Date;
-  comparePassword(inputPassword: string): Promise<boolean>;
 }
 
-const userSchema = new Schema({
+const tokenSchema = new Schema({
   id: {
     type: String,
     required: true,
     unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
   },
   refreshToken: {
     type: String,
@@ -37,21 +30,21 @@ const userSchema = new Schema({
   },
 })
 
-userSchema.pre("save", async function (this: UserDocument, next: any) {
+// tokenSchema.pre("save", async function (this: TokenDocument, next: any) {
 
-  if (!this.isModified("password")) return next();
+//   if (!this.isModified("password")) return next();
 
-  // if password is modified, save the password with encrypt..
-  return next();
-})
+//   // if password is modified, save the password with encrypt..
+//   return next();
+// })
 
-userSchema.methods.comparePassword = async function (inputPassword: string): Promise<boolean> {
-  const user = this as UserDocument;
-  const comparison = async () => {
-    if (user.password === inputPassword) return true;
-    else return false;
-  }
-  return comparison();
-}
+// userSchema.methods.comparePassword = async function (inputPassword: string): Promise<boolean> {
+//   const user = this as UserDocument;
+//   const comparison = async () => {
+//     if (user.password === inputPassword) return true;
+//     else return false;
+//   }
+//   return comparison();
+// }
 
-export default mongoose.model<UserDocument>("User", userSchema);
+export default mongoose.model<TokenDocument>("User", tokenSchema);
