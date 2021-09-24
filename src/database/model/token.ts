@@ -2,11 +2,13 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface TokenInput {
   id: string;
+  targetServerId: string;
   accessToken: string;
 }
 
 export interface TokenDocument extends Document {
   id: string;
+  targetServerId: string;
   refreshToken: string;
   createdAt: Date;
   updatedAt: Date;
@@ -17,6 +19,10 @@ const tokenSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+  },
+  targetServerId: {
+    type: String,
+    required: true,
   },
   refreshToken: {
     type: String,

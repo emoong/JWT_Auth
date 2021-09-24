@@ -4,6 +4,13 @@ declare global {
       MONGO_ID: string!;
       MONGO_PW: string!;
       MONGO_COLLECTION: string!;
+      SECRET_KEY: string!;
+      SERVER_ID: string!;
+    }
+  }
+  namespace Express {
+    interface Request {
+      privateObject?: object;
     }
   }
 }
