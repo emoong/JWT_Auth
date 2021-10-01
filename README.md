@@ -7,6 +7,7 @@
 > In this server, the authentication can be verified by jwt.
 
 ## Architecture
+> ### Login
 >> ![Alt auth and user service](./images/authAndUser.png)
 1. Client → API Gateway
     
@@ -55,7 +56,7 @@
     	refreshToken: "encrypt(something, secret key, 2weeks)"
     }
     ```
-
+> ### Authentication with token
 >> ![Alt auth and user service](./images/authAndService.png)
 1. Client → API Gateway
     
