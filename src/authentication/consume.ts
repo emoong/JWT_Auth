@@ -1,6 +1,8 @@
 import exprss, { Request, Response, NextFunction, } from "express";
 import jwt from "jsonwebtoken";
-import { StringOrUndefined, DecryptForm, EncryptForm, ObjectOrNull, DecryptFormOrNull } from "../types/union";
+import { StringOrUndefined, ObjectOrNull } from "../types/union";
+import { DecryptForm, EncryptForm, DecryptFormOrNull } from "../types/form"
+import { CustomRequest } from "../types/express"
 import { secretKey } from './config';
 
 
@@ -18,7 +20,7 @@ export const decrypt = (token: string, secretKey: string): DecryptForm => {
 
 // middleware
 // return type is not defined
-export const authenticationToken = (req: Request, res: Response, next: NextFunction): any => {
+export const authenticationToken = (req: CustomRequest, res: Response, next: NextFunction): any => {
   const authHeader: StringOrUndefined = req.headers['authorization'];
   const token: StringOrUndefined = authHeader && authHeader.split(" ")[1];
   if (!token) return res.sendStatus(401);

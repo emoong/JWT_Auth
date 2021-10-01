@@ -8,11 +8,6 @@ declare global {
       SERVER_ID: string!;
     }
   }
-  namespace Express {
-    interface Request {
-      privateObject?: object;
-    }
-  }
 }
 
 // If this file has no import/export statements (i.e. is a script)

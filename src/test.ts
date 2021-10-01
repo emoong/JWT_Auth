@@ -1,6 +1,7 @@
 import { encrypt } from "./authentication/publish";
 import { decrypt } from "./authentication/consume";
-import { EncryptForm } from "./types/union";
+import { } from "./types/union";
+import { EncryptForm } from "./types/form"
 import { secretKey } from './authentication/config';
 
 const testObj: EncryptForm = {
