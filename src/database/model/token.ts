@@ -1,26 +1,28 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface TokenInput {
-  id: string;
-  targetServerId: string;
-  accessToken: string;
+  uid: string;
+  password: string;
+  targetServer: string;
+  refreshToken: string;
 }
 
-export interface TokenDocument extends Document {
-  id: string;
-  targetServerId: string;
-  refreshToken: string;
+export interface TokenDocument extends Document, TokenInput {
   createdAt: Date;
   updatedAt: Date;
 }
 
 const tokenSchema = new Schema({
-  id: {
+  uid: {
     type: String,
     required: true,
     unique: true,
   },
-  targetServerId: {
+  password: {
+    type: String,
+    required: true,
+  },
+  targetServer: {
     type: String,
     required: true,
   },
@@ -35,22 +37,5 @@ const tokenSchema = new Schema({
     type: String,
   },
 })
-
-// tokenSchema.pre("save", async function (this: TokenDocument, next: any) {
-
-//   if (!this.isModified("password")) return next();
-
-//   // if password is modified, save the password with encrypt..
-//   return next();
-// })
-
-// userSchema.methods.comparePassword = async function (inputPassword: string): Promise<boolean> {
-//   const user = this as UserDocument;
-//   const comparison = async () => {
-//     if (user.password === inputPassword) return true;
-//     else return false;
-//   }
-//   return comparison();
-// }
 
 export default mongoose.model<TokenDocument>("User", tokenSchema);

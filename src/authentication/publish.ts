@@ -1,6 +1,7 @@
 import exprss, { Request, Response, NextFunction, } from "express";
 import jwt from "jsonwebtoken";
-import { StringOrUndefined, EncryptForm } from "../types/union";
+import { StringOrUndefined } from "../types/union";
+import { EncryptForm } from "../types/form"
 import { secretKey, thisServerId } from './config';
 
 // return type is not defined
